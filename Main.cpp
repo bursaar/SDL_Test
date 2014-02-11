@@ -23,8 +23,8 @@ int main(int argn, char * args[])
 	SDL_Surface * redsquare = SDL_LoadBMP("redsquare.bmp");
 	SDL_Surface * bluesquare = SDL_LoadBMP("bluesquare.bmp");
 
-	int BlueX = 0;
-	int BlueY = 0;
+	float BlueX = 0.0f;
+	float BlueY = 0.0f;
 
 
 	int LastFrameTime = 0;
@@ -35,6 +35,8 @@ int main(int argn, char * args[])
 	while (!quit)
 	{
 		// Draw
+		SDL_FillRect(Surface, NULL, 0xff000000);
+
 
 		for (int y = 0; y < 25; y++)
 		{
@@ -70,11 +72,16 @@ int main(int argn, char * args[])
 		// Update
 
 		int NewFrameTime = SDL_GetTicks();
+		float TimeSinceLastFrame = ((NewFrameTime - LastFrameTime) / 1000.0f);	// milliseconds
+
 
 		// We know how long this stuff takes.
+		const Uint8 * KeyboardState = SDL_GetKeyboardState(NULL);
 
-
-
+		if (KeyboardState[SDL_SCANCODE_RIGHT])
+		{
+			BlueX += (15 * TimeSinceLastFrame);
+		}
 
 		LastFrameTime = NewFrameTime;
 
