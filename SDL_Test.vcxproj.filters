@@ -13,6 +13,9 @@
     <Filter Include="Algorithms">
       <UniqueIdentifier>{223bd8a9-6978-4397-84dd-7eeec6321337}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SDL Stuff">
+      <UniqueIdentifier>{1be435fe-f427-49e0-bd32-57ad581d4a32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h">
@@ -32,6 +35,9 @@
     </ClInclude>
     <ClInclude Include="Pathfinder.h">
       <Filter>Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>SDL Stuff</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
