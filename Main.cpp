@@ -1,5 +1,8 @@
 #include <SDL.h>
 #include "Collision.h"
+#include <stdio.h>
+
+using namespace std;
 
 
 int main(int argn, char * args[])
@@ -24,7 +27,6 @@ int main(int argn, char * args[])
 	float BlueX = bluesquare->w;
 	float BlueY = 0.0f;
 
-
 	int LastFrameTime = 0;
 
 	LastFrameTime = SDL_GetTicks();
@@ -36,6 +38,7 @@ int main(int argn, char * args[])
 	{
 		// Draw
 		SDL_FillRect(Surface, NULL, 0xffffffff);
+		SDL_Rect Destination;
 
 		// Draw out maze
 		for (int y = 0; y < 25; y++)
@@ -79,58 +82,34 @@ int main(int argn, char * args[])
 
 		if (KeyboardState[SDL_SCANCODE_RIGHT] || KeyboardState[SDL_SCANCODE_D])
 		{
-			if (!AmIColliding(BlueDestination, PathOne))
+			if (!AmIColliding(BlueDestination, PathOne, RIGHT))
 			{
 				BlueX += (speed * TimeSinceLastFrame);
 			}
-			else {
-				while (BlueDestination.x % BlueDestination.w != 0)
-				{
-					BlueX - 1;
-				}
-			}
+			
 		}
 		if (KeyboardState[SDL_SCANCODE_DOWN] || KeyboardState[SDL_SCANCODE_S])
 		{
-			if (!AmIColliding(BlueDestination, PathOne))
+			if (!AmIColliding(BlueDestination, PathOne, DOWN))
 			{
 				BlueY += (speed * TimeSinceLastFrame);
 			}
-			else
-			{
-				while (BlueDestination.y % BlueDestination.h != 0)
-				{
-					BlueY - 1;
-				}
-			}
+				
 		}
 		if (KeyboardState[SDL_SCANCODE_LEFT] || KeyboardState[SDL_SCANCODE_A])
 		{
-			if (!AmIColliding(BlueDestination, PathOne))
+			if (!AmIColliding(BlueDestination, PathOne, LEFT))
 			{
 				BlueX -= (speed * TimeSinceLastFrame);
-			}
-			else
-			{
-				while (BlueDestination.x % BlueDestination.w != 0)
-				{
-					BlueX + 1;
-				}
 			}
 		}
 		if (KeyboardState[SDL_SCANCODE_UP] || KeyboardState[SDL_SCANCODE_W])
 		{
-			if (!AmIColliding(BlueDestination, PathOne))
+			if (!AmIColliding(BlueDestination, PathOne, UP))
 			{
 				BlueY -= (speed * TimeSinceLastFrame);
 			}
-			else
-			{
-				while (BlueDestination.y % BlueDestination.h != 0)
-				{
-					BlueY + 1;
-				}
-			}
+			
 		}
 		if (KeyboardState[SDL_SCANCODE_EQUALS])
 		{
